@@ -19,6 +19,9 @@
 body {
   color: rgb(var(--foreground-rgb));
   background: white;
+  max-width: 360px;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 @layer utilities {
