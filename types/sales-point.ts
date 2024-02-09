@@ -5,4 +5,5 @@ export type Icon = {
   width?: number | `${number}`;
   height?: number | `${number}`;
   alt: string;
+  link?: string;
 };
