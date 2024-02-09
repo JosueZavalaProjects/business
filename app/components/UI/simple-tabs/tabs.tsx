@@ -2,8 +2,6 @@ import React, { useMemo } from "react";
 
 import useSalesPointState from "../../modules/sales-point/states/sales-point-state";
 
-//import useNavigationState from '@/components/modules/account-management/states/navigation-state';
-
 type HTMLTags = keyof React.JSX.IntrinsicElements;
 
 interface TabPanelProps {

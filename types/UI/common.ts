@@ -38,3 +38,12 @@ export type Size =
   | "9xl";
 
 export type FontWeight = "normal" | "medium" | "semibold" | "bold";
+
+export type NavOptions = {
+  label: string;
+  name: string;
+};
+
+export type TabContent = {
+  [x: string]: JSX.Element;
+};

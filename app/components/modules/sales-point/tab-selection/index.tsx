@@ -1,11 +1,19 @@
+import { NavOptions } from "@/types/UI/common";
+
 import { ContainerCard } from "../../../UI/container-card";
-import useSalesPointState from "../states/sales-point-state";
 import { TabSelectionItem } from "./tab-selection-item";
 
-export const TabSelection = () => {
-  const { menuNav } = useSalesPointState();
-  const navItems = menuNav;
+type TabSelectionProps = {
+  navItems: NavOptions[];
+  tabName: string;
+  setTabName: (tabName: string) => void;
+};
 
+export const TabSelection = ({
+  navItems,
+  tabName,
+  setTabName,
+}: TabSelectionProps) => {
   return (
     <ContainerCard>
       <nav className="">
@@ -14,6 +22,8 @@ export const TabSelection = () => {
             <TabSelectionItem
               text={item.label}
               optionName={item.name}
+              tabName={tabName}
+              setTabName={setTabName}
               key={`TopNavBarItem_${index}`}
             />
           ))}

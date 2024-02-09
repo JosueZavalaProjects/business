@@ -3,12 +3,15 @@ import useSalesPointState from "../states/sales-point-state";
 type TabSelectionItemProps = {
   optionName: string;
   text: string;
+  tabName: string;
+  setTabName: (tabName: string) => void;
 };
 export const TabSelectionItem = ({
   optionName,
   text,
+  tabName,
+  setTabName,
 }: TabSelectionItemProps) => {
-  const { tabName, setTabName } = useSalesPointState();
   return (
     <li
       className={`flex items-center text-center min-w-[105px] h-12 p-2 ${

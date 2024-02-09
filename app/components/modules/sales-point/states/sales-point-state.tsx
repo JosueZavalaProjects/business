@@ -3,12 +3,13 @@
 import { create, useStore } from "zustand";
 
 import { CONTENTS, SALES_POINT_NAV, TAB_KEYS } from "@/constants/sales-point";
+import { NavOptions, TabContent } from "@/types/UI/common";
 
 type SalesPointStateProps = {
   tabName: string;
   setTabName: (tabName: string) => void;
-  menuNav: any[];
-  tabsContents: any;
+  menuNav: NavOptions[];
+  tabsContents: TabContent;
 };
 
 const SalesPointStore = create<SalesPointStateProps>((set) => ({
