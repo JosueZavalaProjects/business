@@ -32,11 +32,3 @@ export const TabSelection = ({
     </ContainerCard>
   );
 };
-/* (
-  <ContainerCard>
-    <div className="flex gap-4 px-4 font-semibold">
-      <div className="text-black cursor-pointer">Comanda</div>
-      <div className="text-black cursor-pointer text-cadet-grey">Checkout</div>
-    </div>
-  </ContainerCard>
-); */
