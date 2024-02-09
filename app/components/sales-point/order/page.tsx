@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ContainerCard } from "../../UI/container-card/page";
-import { CATEGORIES_MOCK } from "@/constants/common";
+import { CATEGORIES_MOCK, PRODUCTS_MOCK } from "@/constants/common";
 import { CategoryCard } from "../categories/category-card";
 import { AddItems } from "../Items/add-items";
 import SearchInput from "../../UI/search-input/page";
@@ -11,13 +11,22 @@ export const Order = () => {
   const [searchValue, setSearchValue] = useState<string>("");
   const [indexCategorySelected, setIndexCategorySelected] =
     useState<number>(-1);
+  const [categorySelected, setCategorySelected] = useState<string>("");
+
+  const CATEGORIES = Object.keys(PRODUCTS_MOCK);
+
+  useEffect(() => {
+    if (indexCategorySelected < 0) return;
+
+    setCategorySelected(CATEGORIES[indexCategorySelected]);
+  }, [indexCategorySelected]);
 
   return (
     <div className="grid p-4 gap-4">
       {/* Categorias */}
       <ContainerCard>
         <div className="flex gap-4 p-6">
-          {CATEGORIES_MOCK.map((category, index) => (
+          {CATEGORIES.map((category, index) => (
             <CategoryCard
               name={category}
               index={index}
@@ -47,7 +56,14 @@ export const Order = () => {
             <SearchInput value={searchValue} setValue={setSearchValue} />
           </div>
           <div className="flex flex-col gap-1 py-2 max-h-60 overflow-y-scroll">
-            <Product name="Llavero de animalitos" isSelected />
+            {categorySelected &&
+              PRODUCTS_MOCK[categorySelected].map((product, index) => (
+                <Product
+                  key={`${categorySelected}_product_${index}`}
+                  name={product.name}
+                />
+              ))}
+            {/* <Product name="Llavero de animalitos" isSelected />
             <Product name="Llavero de Iglesia" />
             <Product name="Llavero de casa" />
             <Product name="Llavero de perrito" />
@@ -64,7 +80,7 @@ export const Order = () => {
             <Product name="Llavero de casa" />
             <Product name="Llavero de perrito" />
             <Product name="Llavero de gato" />
-            <Product name="Llavero de refri" />
+            <Product name="Llavero de refri" /> */}
           </div>
         </div>
       </ContainerCard>

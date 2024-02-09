@@ -7,3 +7,12 @@ export type Icon = {
   alt: string;
   link?: string;
 };
+
+export type Product = {
+  name: string;
+  price: number;
+};
+
+export type ProductsMock = {
+  [key: string]: Product[];
+};
