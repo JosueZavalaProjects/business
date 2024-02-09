@@ -1,12 +1,18 @@
 "use client";
-import { Header } from "../components/Layout/header";
-import { Footer } from "../components/Layout/footer/page";
-import { Order } from "../components/sales-point/order/page";
+import { CONTENTS } from "@/constants/sales-point";
+
+import useSalesPointState from "../components/modules/sales-point/states/sales-point-state";
+import { TabSelection } from "../components/modules/sales-point/tab-selection";
+import { SimpleTabs } from "../components/UI/simple-tabs/tabs-component";
 
 export default function SalesPointPage() {
+  const { tabsContents } = useSalesPointState();
+
+  /* const tabsContents = CONTENTS; */
   return (
     <div className="grid">
-      <Order />
+      <TabSelection />
+      <SimpleTabs tabsContents={tabsContents} />
     </div>
   );
 }

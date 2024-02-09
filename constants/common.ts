@@ -5,7 +5,6 @@ import {
   StoreIcon,
   UsersGroupIcon,
 } from "@/public/assets";
-import { ProductsMock } from "@/types/sales-point";
 
 export const FOOTER_ICONS = [
   { src: FileIcon, alt: "File Icon", link: "/sales-point" },
@@ -15,42 +14,38 @@ export const FOOTER_ICONS = [
   { src: StoreIcon, alt: "Store Icon" },
 ];
 
-export const CATEGORIES_MOCK = [
-  "Ropa",
-  "Imanes",
-  "Llaveros",
-  "Tazas",
-  "Ropa",
-  "Imanes",
-  "Llaveros",
-  "Tazas",
-];
+export const colors = {
+  white: "text-white",
+  gray: "text-gray-400",
+  dark: "text-gray-800",
+  primary: "text-primary",
+  cta: "text-cta-600",
+  positive: "text-positive-600",
+  negative: "text-negative-600",
+  caution: "text-caution-600",
+  info: "text-blue-600",
+  error: "text-negative-500",
+};
 
-export const PRODUCTS_MOCK: ProductsMock = {
-  Ropa: [
-    { name: "playera polo", price: 50 },
-    { name: "playera blanca", price: 40 },
-    { name: "playera roja", price: 550 },
-    { name: "pantalon verde", price: 350 },
-    { name: "Caletines verdes", price: 150 },
-    { name: "sudadera cafe", price: 503 },
-  ],
-  Imanes: [
-    { name: "Iman de Cordoba", price: 50 },
-    { name: "Iman de Milan", price: 33 },
-    { name: "Iman de Italia", price: 13 },
-    { name: "Iman de España", price: 35 },
-    { name: "Iman de Madrid", price: 36 },
-  ],
-  Tazas: [
-    { name: "Taza los beatles", price: 103 },
-    { name: "Taza Negra", price: 203 },
-    { name: "Taza azul mate", price: 50 },
-    { name: "Taza termica", price: 53 },
-  ],
-  /* "Llaveros",
-  "Ropa",
-  "Imanes",
-  "Llaveros",
-  "Tazas", */
+export const sizes = {
+  xs: "text-xs",
+  sm: "text-sm",
+  base: "text-base",
+  lg: "text-lg",
+  xl: "text-xl",
+  "2xl": "text-2xl",
+  "3xl": "text-3xl",
+  "4xl": "text-4xl",
+  "5xl": "text-5xl",
+  "6xl": "text-6xl",
+  "7xl": "text-7xl",
+  "8xl": "text-8xl",
+  "9xl": "text-9xl",
+};
+
+export const fontWeight = {
+  normal: "font-normal",
+  medium: "font-medium",
+  semibold: "font-semibold",
+  bold: "font-bold",
 };

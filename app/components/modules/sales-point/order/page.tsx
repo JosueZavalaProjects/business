@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
-import { ContainerCard } from "../../UI/container-card/page";
-import { CATEGORIES_MOCK, PRODUCTS_MOCK } from "@/constants/common";
+
+import { PRODUCTS_MOCK } from "@/constants/sales-point";
+
+import { ContainerCard } from "../../../UI/container-card";
+import SearchInput from "../../../UI/search-input";
 import { CategoryCard } from "../categories/category-card";
 import { AddItems } from "../Items/add-items";
-import SearchInput from "../../UI/search-input/page";
 import { Product } from "../products/page";
+import { TabSelection } from "../tab-selection";
 
 export const Order = () => {
   const [items, setItems] = useState<number>(1);
@@ -39,14 +42,7 @@ export const Order = () => {
       </ContainerCard>
 
       {/* Tabs */}
-      <ContainerCard>
-        <div className="flex gap-4 px-4 font-semibold">
-          <div className="text-black cursor-pointer">Comanda</div>
-          <div className="text-black cursor-pointer text-cadet-grey">
-            Checkout
-          </div>
-        </div>
-      </ContainerCard>
+      {/* <TabSelection /> */}
 
       {/* Productos */}
       <ContainerCard>

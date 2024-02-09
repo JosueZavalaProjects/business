@@ -1,5 +1,6 @@
+"use client";
 import { MinusIcon, PlusIcon } from "@/public/assets";
-import Image from "next/image";
+
 import { BlackButton } from "./black-button";
 
 type AddItemsProps = {
@@ -13,6 +14,7 @@ export const AddItems = ({ items, setItems }: AddItemsProps) => (
       <BlackButton
         icon={{ src: MinusIcon, alt: "minus icon" }}
         setItems={() => setItems(items - 1)}
+        disabled={items <= 0}
       />
       <div className="grid justify-items-center items-center min-w-16 text-5xl">
         {items}

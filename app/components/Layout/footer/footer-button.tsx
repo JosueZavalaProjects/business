@@ -1,6 +1,8 @@
-import { Icon } from "@/types/sales-point";
+"use client";
 import Image from "next/image";
 import Link from "next/link";
+
+import { Icon } from "@/types/sales-point";
 
 type FooterButtonProps = {
   icon: Icon;
