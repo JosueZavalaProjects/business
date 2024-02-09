@@ -19,6 +19,7 @@ const config: Config = {
         "eerie-black": "#1A1A1A",
         "cadet-grey": "#8FA0A9",
         "malachite-green": "#1CCC43",
+        "seconday-blue": "#0085FF",
       },
     },
   },

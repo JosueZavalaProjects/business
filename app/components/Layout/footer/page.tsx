@@ -1,4 +1,4 @@
-import { ContainerCard } from "../container-card/page";
+import { ContainerCard } from "../../UI/container-card/page";
 import { FooterButton } from "./footer-button";
 import { FOOTER_ICONS } from "@/constants/common";
 
