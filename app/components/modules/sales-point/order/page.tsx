@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 
-import { PRODUCTS_MOCK } from "@/constants/sales-point";
+import { PRODUCTS_MOCK } from "@/constants/sales-point/mock";
+import { Product as ProductType } from "@/types/sales-point";
 
 import { ContainerCard } from "../../../UI/container-card";
 import SearchInput from "../../../UI/search-input";
 import { CategoryCard } from "./components/categories/category-card";
 import { AddItems } from "./components/Items/add-items";
 import { Product } from "./components/products/page";
-import { TabSelection } from "../../../UI/tab-selection";
 
 export const Order = () => {
   const [items, setItems] = useState<number>(1);
@@ -15,6 +15,10 @@ export const Order = () => {
   const [indexCategorySelected, setIndexCategorySelected] =
     useState<number>(-1);
   const [categorySelected, setCategorySelected] = useState<string>("");
+  const [products, setProducts] = useState<ProductType[]>(
+    Object.values(PRODUCTS_MOCK).flat()
+  );
+  const [productSelected, setProductSelected] = useState<number>(-1);
 
   const CATEGORIES = Object.keys(PRODUCTS_MOCK);
 
@@ -22,7 +26,32 @@ export const Order = () => {
     if (indexCategorySelected < 0) return;
 
     setCategorySelected(CATEGORIES[indexCategorySelected]);
+    setSearchValue("");
+    setProductSelected(-1);
   }, [indexCategorySelected]);
+
+  useEffect(() => {
+    setProducts(PRODUCTS_MOCK[categorySelected]);
+  }, [categorySelected]);
+
+  useEffect(() => {
+    setProductSelected(-1);
+    if (!searchValue && !categorySelected) {
+      setProducts(Object.values(PRODUCTS_MOCK).flat());
+      return;
+    }
+
+    if (!searchValue) {
+      setProducts(PRODUCTS_MOCK[categorySelected]);
+      return;
+    }
+
+    console.log(searchValue);
+    const newProducts = [...products].filter((product) =>
+      product.name.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase())
+    );
+    setProducts(newProducts);
+  }, [searchValue]);
 
   return (
     <div className="grid p-4 gap-4">
@@ -41,9 +70,6 @@ export const Order = () => {
         </div>
       </ContainerCard>
 
-      {/* Tabs */}
-      {/* <TabSelection /> */}
-
       {/* Productos */}
       <ContainerCard>
         <div className="flex flex-col gap-2 text-black p-2">
@@ -52,31 +78,16 @@ export const Order = () => {
             <SearchInput value={searchValue} setValue={setSearchValue} />
           </div>
           <div className="flex flex-col gap-1 py-2 max-h-60 overflow-y-scroll">
-            {categorySelected &&
-              PRODUCTS_MOCK[categorySelected].map((product, index) => (
+            {products.length > 0 &&
+              products.map((product, index) => (
                 <Product
                   key={`${categorySelected}_product_${index}`}
                   name={product.name}
+                  index={index}
+                  isSelected={index === productSelected}
+                  setProductSelected={setProductSelected}
                 />
               ))}
-            {/* <Product name="Llavero de animalitos" isSelected />
-            <Product name="Llavero de Iglesia" />
-            <Product name="Llavero de casa" />
-            <Product name="Llavero de perrito" />
-            <Product name="Llavero de gato" />
-            <Product name="Llavero de refri" />
-            <Product name="Llavero de casa" />
-            <Product name="Llavero de perrito" />
-            <Product name="Llavero de gato" />
-            <Product name="Llavero de refri" />
-            <Product name="Llavero de casa" />
-            <Product name="Llavero de perrito" />
-            <Product name="Llavero de gato" />
-            <Product name="Llavero de refri" />
-            <Product name="Llavero de casa" />
-            <Product name="Llavero de perrito" />
-            <Product name="Llavero de gato" />
-            <Product name="Llavero de refri" /> */}
           </div>
         </div>
       </ContainerCard>

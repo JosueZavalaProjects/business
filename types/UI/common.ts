@@ -20,7 +20,9 @@ export type Color =
   | "negative"
   | "caution"
   | "error"
-  | "info";
+  | "info"
+  | "silver"
+  | "eerie-black";
 
 export type Size =
   | "xs"

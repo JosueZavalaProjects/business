@@ -25,6 +25,8 @@ export const colors = {
   caution: "text-caution-600",
   info: "text-blue-600",
   error: "text-negative-500",
+  silver: "text-old-silver",
+  "eerie-black": "text-eerie-black",
 };
 
 export const sizes = {

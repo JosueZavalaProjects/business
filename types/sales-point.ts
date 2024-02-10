@@ -13,6 +13,10 @@ export type Product = {
   price: number;
 };
 
+export type ProductCheckout = Product & {
+  amount: number;
+};
+
 export type ProductsMock = {
   [key: string]: Product[];
 };
