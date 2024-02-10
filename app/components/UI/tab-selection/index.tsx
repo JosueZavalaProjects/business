@@ -1,6 +1,6 @@
 import { NavOptions } from "@/types/UI/common";
 
-import { ContainerCard } from "../../../UI/container-card";
+import { ContainerCard } from "../container-card";
 import { TabSelectionItem } from "./tab-selection-item";
 
 type TabSelectionProps = {

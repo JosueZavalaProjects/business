@@ -1,4 +1,4 @@
-import useSalesPointState from "../states/sales-point-state";
+import useSalesPointState from "../../modules/sales-point/states/sales-point-state";
 
 type TabSelectionItemProps = {
   optionName: string;

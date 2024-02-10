@@ -1,7 +1,7 @@
 "use client";
 
 import useSalesPointState from "../components/modules/sales-point/states/sales-point-state";
-import { TabSelection } from "../components/modules/sales-point/tab-selection";
+import { TabSelection } from "../components/UI/tab-selection";
 import { SimpleTabs } from "../components/UI/simple-tabs";
 
 export default function SalesPointPage() {

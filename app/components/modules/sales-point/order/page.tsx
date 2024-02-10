@@ -4,10 +4,10 @@ import { PRODUCTS_MOCK } from "@/constants/sales-point";
 
 import { ContainerCard } from "../../../UI/container-card";
 import SearchInput from "../../../UI/search-input";
-import { CategoryCard } from "../categories/category-card";
-import { AddItems } from "../Items/add-items";
-import { Product } from "../products/page";
-import { TabSelection } from "../tab-selection";
+import { CategoryCard } from "./components/categories/category-card";
+import { AddItems } from "./components/Items/add-items";
+import { Product } from "./components/products/page";
+import { TabSelection } from "../../../UI/tab-selection";
 
 export const Order = () => {
   const [items, setItems] = useState<number>(1);
