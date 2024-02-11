@@ -1,8 +1,12 @@
+"use client";
 import dayjs from "dayjs";
 require("dayjs/locale/es");
 
 import { ContainerCard } from "@/app/components/UI/container-card";
-import Text from "@/app/components/UI/text/text";
+import Text from "@/app/components/UI/text";
+
+import { TotalTable } from "./components/table/table";
+
 dayjs.locale("es");
 
 export const Total = () => {
@@ -22,71 +26,23 @@ export const Total = () => {
           <Text color="silver" size="xs" className="capitalize">
             Caja 1
           </Text>
-          {/* <div className="text-old-silver text-sm font-medium">test</div> */}
         </div>
-        <div className="w-full">
-          <table className="w-full text-gray-700">
-            <thead>
-              <tr className="text-cadet-grey">
-                <th className="font-light pb-2">Cant</th>
-                <th className="font-light pb-2">Descripción</th>
-                <th className="font-light pb-2">P.U.</th>
-                <th className="font-light pb-2">Total</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr className="text-center border-y">
-                <td className="py-4">
-                  <Text size="2xl" weight="bold">
-                    2
-                  </Text>
-                </td>
-                <td className="py-4">Cafe Latte</td>
-                <td className="py-4">20</td>
-                <td className="py-4">40</td>
-              </tr>
-              <tr className="text-center border-y">
-                <td className="py-4">
-                  <Text size="2xl" weight="bold">
-                    2
-                  </Text>
-                </td>
-                <td className="py-4">Cafe Latte</td>
-                <td className="py-4">20</td>
-                <td className="py-4">40</td>
-              </tr>
-              <tr className="text-center border-y">
-                <td className="py-4">
-                  <Text size="2xl" weight="bold">
-                    2
-                  </Text>
-                </td>
-                <td className="py-4">Cafe Latte</td>
-                <td className="py-4">20</td>
-                <td className="py-4">40</td>
-              </tr>
-              <tr className="text-center border-y">
-                <td className="py-4">
-                  <Text size="2xl" weight="bold">
-                    2
-                  </Text>
-                </td>
-                <td className="py-4">Cafe Latte</td>
-                <td className="py-4">20</td>
-                <td className="py-4">40</td>
-              </tr>
-              <tr className="text-center border-y">
-                <td className="py-4">
-                  <Text size="2xl" weight="bold">
-                    2
-                  </Text>
-                </td>
-                <td className="py-4">Cafe Latte</td>
-                <td className="py-4">20</td>
-                <td className="py-4">40</td>
-              </tr>
-            </tbody>
-          </table>
+        <div className="grid gap-2 w-full">
+          <TotalTable />
+          <div className="flex justify-between items-center p-4">
+            <Text size="4xl" weight="semibold">
+              Total
+            </Text>
+            <div className="flex gap-1 items-center">
+              <Text size="2xl">$80</Text>
+              <Text size="lg">MXN</Text>
+            </div>
+          </div>
+          <div className="grid justify-items-center items-center pb-4">
+            <button className="border rounded-xl py-2 px-6 bg-gray-400 text-white">
+              Agregar
+            </button>
+          </div>
         </div>
       </div>
     </ContainerCard>
