@@ -7,6 +7,7 @@ type ButtonProps = {
   onClick?: () => void;
   bgColor?: BgColor;
   className?: string;
+  disabled?: boolean;
   children: React.ReactNode;
 };
 export const Button = ({
@@ -14,6 +15,7 @@ export const Button = ({
   bgColor = "main-blue",
   className,
   children,
+  disabled = false,
 }: ButtonProps) => {
   const classes = cn(
     className,
@@ -21,10 +23,18 @@ export const Button = ({
     /* sizes[size],
     fontWeight[weight] */
   );
+
   return (
     <button
       onClick={() => onClick()}
-      className={`border rounded-xl py-2 px-6 bg-gray-400 text-white ${classes}`}
+      className={`border rounded-xl py-2 px-6 text-white ${classes}
+      ${
+        disabled
+          ? "bg-gray-200 border-gray-200 hover:text-gray-400 text-gray-400"
+          : ""
+      }
+      `}
+      disabled={disabled}
     >
       <span className="flex items-center justify-center">{children}</span>
     </button>

@@ -1,4 +1,5 @@
 "use client";
+import { Button } from "@/app/components/UI/button";
 import { MinusIcon, PlusIcon } from "@/public/assets";
 
 import { BlackButton } from "./black-button";
@@ -6,9 +7,10 @@ import { BlackButton } from "./black-button";
 type AddItemsProps = {
   items: number;
   setItems: (value: number) => void;
+  disabled: boolean;
 };
 
-export const AddItems = ({ items, setItems }: AddItemsProps) => (
+export const AddItems = ({ items, setItems, disabled }: AddItemsProps) => (
   <div className="flex justify-between gap-4 p-2">
     <div className="flex items-center gap-3">
       <BlackButton
@@ -25,9 +27,9 @@ export const AddItems = ({ items, setItems }: AddItemsProps) => (
       />
     </div>
     <div className="grid justify-items-center items-center">
-      <button className="border rounded-xl py-2 px-6 bg-malachite-green text-white">
+      <Button bgColor="malachite-green" disabled={disabled}>
         Agregar
-      </button>
+      </Button>
     </div>
   </div>
 );

@@ -43,6 +43,7 @@ export const backgroundColors = {
   silver: "bg-old-silver",
   "eerie-black": "bg-eerie-black",
   "main-blue": "bg-main-blue",
+  "malachite-green": "bg-malachite-green",
 };
 
 export const sizes = {

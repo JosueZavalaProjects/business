@@ -73,7 +73,11 @@ export const Order = () => {
       {/* Productos */}
       <ContainerCard>
         <div className="flex flex-col gap-2 text-black p-2">
-          <AddItems items={items} setItems={setItems} />
+          <AddItems
+            items={items}
+            setItems={setItems}
+            disabled={productSelected < 0 || items <= 0}
+          />
           <div className="w-full">
             <SearchInput value={searchValue} setValue={setSearchValue} />
           </div>

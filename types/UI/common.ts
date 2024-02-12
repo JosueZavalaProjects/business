@@ -24,7 +24,7 @@ export type Color =
   | "silver"
   | "eerie-black";
 
-export type BgColor = Color | "main-blue";
+export type BgColor = Color | "main-blue" | "malachite-green";
 
 export type Size =
   | "xs"
