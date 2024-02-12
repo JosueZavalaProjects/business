@@ -5,6 +5,7 @@ import { Product as ProductType } from "@/types/sales-point";
 
 import { ContainerCard } from "../../../UI/container-card";
 import SearchInput from "../../../UI/search-input";
+import useSalesPointState from "../states/sales-point-state";
 import { CategoryCard } from "./components/categories/category-card";
 import { AddItems } from "./components/Items/add-items";
 import { Product } from "./components/products/page";
@@ -20,7 +21,15 @@ export const Order = () => {
   );
   const [productSelected, setProductSelected] = useState<number>(-1);
 
+  const { updateProduct } = useSalesPointState();
+
   const CATEGORIES = Object.keys(PRODUCTS_MOCK);
+
+  const handleAddProduct = () => {
+    const productToAdd = [...products][productSelected];
+    const productCheckout = { ...productToAdd, amount: items };
+    updateProduct(productCheckout);
+  };
 
   useEffect(() => {
     if (indexCategorySelected < 0) return;
@@ -46,7 +55,6 @@ export const Order = () => {
       return;
     }
 
-    console.log(searchValue);
     const newProducts = [...products].filter((product) =>
       product.name.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase())
     );
@@ -77,6 +85,7 @@ export const Order = () => {
             items={items}
             setItems={setItems}
             disabled={productSelected < 0 || items <= 0}
+            addProduct={handleAddProduct}
           />
           <div className="w-full">
             <SearchInput value={searchValue} setValue={setSearchValue} />

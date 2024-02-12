@@ -8,9 +8,15 @@ type AddItemsProps = {
   items: number;
   setItems: (value: number) => void;
   disabled: boolean;
+  addProduct: () => void;
 };
 
-export const AddItems = ({ items, setItems, disabled }: AddItemsProps) => (
+export const AddItems = ({
+  items,
+  setItems,
+  disabled,
+  addProduct,
+}: AddItemsProps) => (
   <div className="flex justify-between gap-4 p-2">
     <div className="flex items-center gap-3">
       <BlackButton
@@ -27,9 +33,14 @@ export const AddItems = ({ items, setItems, disabled }: AddItemsProps) => (
       />
     </div>
     <div className="grid justify-items-center items-center">
-      <Button bgColor="malachite-green" disabled={disabled}>
+      <Button
+        bgColor="malachite-green"
+        disabled={disabled}
+        onClick={() => addProduct()}
+      >
         Agregar
       </Button>
+      <div className="bg-gray-200"></div>
     </div>
   </div>
 );

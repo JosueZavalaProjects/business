@@ -3,6 +3,7 @@
 import { create, useStore } from "zustand";
 
 import { CONTENTS, SALES_POINT_NAV, TAB_KEYS } from "@/constants/sales-point";
+import { ProductCheckout } from "@/types/sales-point";
 import {
   NavOptions,
   PaymentMethod,
@@ -12,28 +13,66 @@ import {
 
 type SalesPointStateProps = {
   tabName: string;
-  setTabName: (tabName: string) => void;
   menuNav: NavOptions[];
+  payment: number;
+  products: ProductCheckout[];
   tabsContents: TabContent;
   paymentStep: PaymentStep;
-  setPaymentStep: (paymentStep: PaymentStep) => void;
   paymentMethod: PaymentMethod;
+  total: number;
+  setTabName: (tabName: string) => void;
+  setPaymentStep: (paymentStep: PaymentStep) => void;
   setPaymentMethod: (paymentMethod: PaymentMethod) => void;
-  payment: number;
   setPayment: (paymentMethod: number) => void;
+  updateProduct: (product: ProductCheckout) => void;
+};
+
+const handleUpdateProduct = (
+  item: ProductCheckout,
+  state: SalesPointStateProps
+): ProductCheckout[] => {
+  const { products } = state;
+
+  const currentItem = products.find((element) => element?.name === item?.name);
+
+  if (currentItem) {
+    currentItem.amount += item.amount;
+    return [...products];
+  }
+
+  return [...products, item];
+};
+
+const calculateItemTotal = (item: ProductCheckout) => item.price * item.amount;
+
+const handleCalculateTotal = (items: ProductCheckout[]) => {
+  return items
+    .map(calculateItemTotal)
+    .reduce((accumulator, currentValue) => accumulator + currentValue, 0);
 };
 
 const SalesPointStore = create<SalesPointStateProps>((set) => ({
   tabName: TAB_KEYS.ORDER,
-  setTabName: (tabName: string) => set({ tabName }),
   menuNav: SALES_POINT_NAV,
   tabsContents: CONTENTS,
   paymentStep: 1,
-  setPaymentStep: (paymentStep: PaymentStep) => set({ paymentStep }),
-  paymentMethod: "cash",
-  setPaymentMethod: (paymentMethod: PaymentMethod) => set({ paymentMethod }),
   payment: 0,
+  paymentMethod: "cash",
+  products: [],
+  total: 0,
+  setTabName: (tabName: string) => set({ tabName }),
+  setPaymentStep: (paymentStep: PaymentStep) => set({ paymentStep }),
+  setPaymentMethod: (paymentMethod: PaymentMethod) => set({ paymentMethod }),
   setPayment: (payment: number) => set({ payment }),
+  updateProduct: (item: ProductCheckout) => {
+    set((state: SalesPointStateProps) => {
+      const products = handleUpdateProduct(item, state);
+      const total = handleCalculateTotal(products);
+
+      return { products, total };
+    });
+  },
+  setProducts: (products: ProductCheckout[]) => set({ products }), // Create setProducts
 }));
 
 const useSalesPointState = () => useStore(SalesPointStore);
