@@ -7,13 +7,15 @@ require("dayjs/locale/es");
 import { ContainerCard } from "@/app/components/UI/container-card";
 import Text from "@/app/components/UI/text";
 
+import useSalesPointState from "../states/sales-point-state";
 import { Modals } from "./components/modals";
 import { TotalTable } from "./components/table/table";
 
-dayjs.locale("es");
-
 export const Total = () => {
   const [show, setShow] = useState<boolean>(false);
+  const { products, total } = useSalesPointState();
+
+  dayjs.locale("es");
 
   return (
     <ContainerCard>
@@ -34,13 +36,13 @@ export const Total = () => {
           </Text>
         </div>
         <div className="grid gap-2 w-full">
-          <TotalTable />
+          <TotalTable products={products} />
           <div className="flex justify-between items-center p-4 text-gray-800">
             <Text size="4xl" weight="semibold">
               Total
             </Text>
             <div className="flex gap-1 items-center">
-              <Text size="2xl">$80</Text>
+              <Text size="2xl">$ {total}</Text>
               <Text size="lg">MXN</Text>
             </div>
           </div>
@@ -49,7 +51,7 @@ export const Total = () => {
               onClick={() => setShow(true)}
               className="border rounded-xl py-2 px-6 bg-gray-400 text-white"
             >
-              Agregar
+              Cobrar
             </button>
           </div>
         </div>

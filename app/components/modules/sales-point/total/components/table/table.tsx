@@ -1,6 +1,8 @@
 import Text from "@/app/components/UI/text";
+import { ProductCheckout } from "@/types/sales-point";
 
-export const TotalTable = () => {
+export const TotalTable = ({ products }: { products: ProductCheckout[] }) => {
+  console.log({ products });
   return (
     <div className="max-h-96 overflow-y-scroll">
       <table className="w-full text-gray-700">
@@ -13,98 +15,26 @@ export const TotalTable = () => {
           </tr>
         </thead>
         <tbody>
-          <tr className="text-center border-y">
-            <td className="py-4">
-              <Text size="2xl" weight="bold">
-                2
-              </Text>
-            </td>
-            <td className="py-4">Cafe Latte</td>
-            <td className="py-4">20</td>
-            <td className="py-4">40</td>
-          </tr>
-          <tr className="text-center border-y">
-            <td className="py-4">
-              <Text size="2xl" weight="bold">
-                2
-              </Text>
-            </td>
-            <td className="py-4">Cafe Latte</td>
-            <td className="py-4">20</td>
-            <td className="py-4">40</td>
-          </tr>
-          <tr className="text-center border-y">
-            <td className="py-4">
-              <Text size="2xl" weight="bold">
-                2
-              </Text>
-            </td>
-            <td className="py-4">Cafe Latte</td>
-            <td className="py-4">20</td>
-            <td className="py-4">40</td>
-          </tr>
-          <tr className="text-center border-y">
-            <td className="py-4">
-              <Text size="2xl" weight="bold">
-                2
-              </Text>
-            </td>
-            <td className="py-4">Cafe Latte</td>
-            <td className="py-4">20</td>
-            <td className="py-4">40</td>
-          </tr>
-          <tr className="text-center border-y">
-            <td className="py-4">
-              <Text size="2xl" weight="bold">
-                2
-              </Text>
-            </td>
-            <td className="py-4">Cafe Latte</td>
-            <td className="py-4">20</td>
-            <td className="py-4">40</td>
-          </tr>
-          <tr className="text-center border-y">
-            <td className="py-4">
-              <Text size="2xl" weight="bold">
-                2
-              </Text>
-            </td>
-            <td className="py-4">Cafe Latte</td>
-            <td className="py-4">20</td>
-            <td className="py-4">40</td>
-          </tr>
-          <tr className="text-center border-y">
-            <td className="py-4">
-              <Text size="2xl" weight="bold">
-                2
-              </Text>
-            </td>
-            <td className="py-4">Cafe Latte</td>
-            <td className="py-4">20</td>
-            <td className="py-4">40</td>
-          </tr>
-          <tr className="text-center border-y">
-            <td className="py-4">
-              <Text size="2xl" weight="bold">
-                2
-              </Text>
-            </td>
-            <td className="py-4">Cafe Latte</td>
-            <td className="py-4">20</td>
-            <td className="py-4">40</td>
-          </tr>
-          <tr className="text-center border-y">
-            <td className="py-4">
-              <Text size="2xl" weight="bold">
-                2
-              </Text>
-            </td>
-            <td className="py-4">Cafe Latte</td>
-            <td className="py-4">20</td>
-            <td className="py-4">40</td>
-          </tr>
+          {products.map((product, index) => (
+            <RowTable key={`rowTable_${index}`} product={product} />
+          ))}
         </tbody>
       </table>
     </div>
+  );
+};
+
+const RowTable = ({ product }: { product: ProductCheckout }) => {
+  return (
+    <tr className="text-center border-y">
+      <td className="py-4">
+        <Text size="2xl" weight="bold">
+          {product.amount}
+        </Text>
+      </td>
+      <td className="text-center py-4">{product.name}</td>
+      <td className="py-4">{product.price}</td>
+      <td className="py-4">{product.amount * product.price}</td>
+    </tr>
   );
 };
