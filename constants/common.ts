@@ -29,6 +29,22 @@ export const colors = {
   "eerie-black": "text-eerie-black",
 };
 
+export const backgroundColors = {
+  white: "bg-white",
+  gray: "bg-gray-400",
+  dark: "bg-gray-800",
+  primary: "bg-primary",
+  cta: "bg-cta-600",
+  positive: "bg-positive-600",
+  negative: "bg-negative-600",
+  caution: "bg-caution-600",
+  info: "bg-blue-600",
+  error: "bg-negative-500",
+  silver: "bg-old-silver",
+  "eerie-black": "bg-eerie-black",
+  "main-blue": "bg-main-blue",
+};
+
 export const sizes = {
   xs: "text-xs",
   sm: "text-sm",

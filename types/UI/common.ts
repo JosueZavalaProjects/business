@@ -24,6 +24,8 @@ export type Color =
   | "silver"
   | "eerie-black";
 
+export type BgColor = Color | "main-blue";
+
 export type Size =
   | "xs"
   | "sm"
@@ -49,3 +51,6 @@ export type NavOptions = {
 export type TabContent = {
   [x: string]: JSX.Element;
 };
+
+export type PaymentStep = 1 | 2 | 3 | 4;
+export type PaymentMethod = "cash" | "credit" | "debit" | "transfer";
