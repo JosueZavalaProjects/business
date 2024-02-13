@@ -8,9 +8,9 @@ import SearchInput from "../../../UI/search-input";
 import useSalesPointState from "../states/sales-point-state";
 import { CategoryCard } from "./components/categories/category-card";
 import { AddItems } from "./components/Items/add-items";
-import { Product } from "./components/products/page";
+import { Product } from "./components/products";
 import { Button } from "@/app/components/UI/button";
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, doc, getDoc, getDocs } from "firebase/firestore";
 import { db } from "@/services/firebase";
 
 export const Order = () => {
@@ -19,57 +19,105 @@ export const Order = () => {
   const [indexCategorySelected, setIndexCategorySelected] =
     useState<number>(-1);
   const [categorySelected, setCategorySelected] = useState<string>("");
-  const [products, setProducts] = useState<ProductType[]>(
-    Object.values(PRODUCTS_MOCK).flat()
-  );
+  const [products, setProducts] = useState<ProductType[]>(PRODUCTS_MOCK);
+  const [filteredProducts, setFilteredProducts] =
+    useState<ProductType[]>(PRODUCTS_MOCK);
+  const [categories, setCategorires] = useState<string[]>(["Mock Cateogry"]);
   const [productSelected, setProductSelected] = useState<number>(-1);
 
   const { updateProduct } = useSalesPointState();
 
-  const CATEGORIES = Object.keys(PRODUCTS_MOCK);
+  /* const CATEGORIES = Object.keys(PRODUCTS_MOCK); */
 
   const handleAddProduct = () => {
-    const productToAdd = [...products][productSelected];
+    const productToAdd = [...filteredProducts][productSelected];
     const productCheckout = { ...productToAdd, amount: items };
     updateProduct(productCheckout);
   };
 
-  const handleAddProductToDB = async () => {
-    await addDoc(collection(db, "products"), {
-      name: "playera de metalica",
-      amount: 50,
-      subcategory: "L"
-    });
+  const handleGetProducts = async () => {
+    const productsReponse = await getDataProducts();
+    if (!productsReponse) return;
+
+    const uniqueCategories = productsReponse
+      .map((product) => product.category)
+      .filter((value, index, array) => {
+        return array.indexOf(value) === index;
+      });
+
+    setProducts(productsReponse);
+    setFilteredProducts(productsReponse);
+    setCategorires(uniqueCategories);
   };
 
-  useEffect(() => {
-    if (indexCategorySelected < 0) return;
+  const getDataProducts = async () => {
+    const qwerySnapshot = await getDocs(collection(db, "products"));
 
-    setCategorySelected(CATEGORIES[indexCategorySelected]);
+    const response: ProductType[] = [];
+    qwerySnapshot.forEach((doc) => {
+      const { category, subcategory, inventory, name, price } = doc.data();
+      response.push({
+        id: doc.id,
+        name,
+        price,
+        category,
+        inventory,
+        subcategory,
+      });
+    });
+
+    return response;
+  };
+
+  /*  const handleAddProductToDB = async () => {
+    await addDoc(collection(db, "products"), {
+      name: "carrito de control remoto",
+      inventory: 50,
+      category: "juguetes",
+      price: 80,
+      subcategory: "electronico",
+    });
+  };
+ */
+  useEffect(() => {
+    /* getDataProducts(); */
+    handleGetProducts();
+  }, []);
+
+  useEffect(() => {
+    if (indexCategorySelected < 0 || !categories) return;
+
+    setCategorySelected(categories[indexCategorySelected]);
     setSearchValue("");
     setProductSelected(-1);
   }, [indexCategorySelected]);
 
   useEffect(() => {
-    setProducts(PRODUCTS_MOCK[categorySelected]);
+    const newProducts = [...products].filter(
+      (product) => product.category === categorySelected
+    );
+    setFilteredProducts(newProducts);
   }, [categorySelected]);
 
   useEffect(() => {
     setProductSelected(-1);
     if (!searchValue && !categorySelected) {
-      setProducts(Object.values(PRODUCTS_MOCK).flat());
+      setFilteredProducts(products);
       return;
     }
 
     if (!searchValue) {
-      setProducts(PRODUCTS_MOCK[categorySelected]);
+      const newProducts = [...products].filter(
+        (product) => product.category === categorySelected
+      );
+      setFilteredProducts(newProducts);
       return;
     }
 
-    const newProducts = [...products].filter((product) =>
+    const newProducts = [...filteredProducts].filter((product) =>
       product.name.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase())
     );
-    setProducts(newProducts);
+    setFilteredProducts(newProducts);
   }, [searchValue]);
 
   return (
@@ -77,7 +125,7 @@ export const Order = () => {
       {/* Categorias */}
       <ContainerCard>
         <div className="flex gap-4 p-6">
-          {CATEGORIES.map((category, index) => (
+          {categories.map((category, index) => (
             <CategoryCard
               name={category}
               index={index}
@@ -98,19 +146,19 @@ export const Order = () => {
             disabled={productSelected < 0 || items <= 0}
             addProduct={handleAddProduct}
           />
-          <Button
+          {/*       <Button
             bgColor="malachite-green"
             onClick={() => handleAddProductToDB()}
           >
             Agregar Producto a la BD
           </Button>
-          <div className="bg-malachine-green"></div>
+ */}
           <div className="w-full">
             <SearchInput value={searchValue} setValue={setSearchValue} />
           </div>
           <div className="flex flex-col gap-1 py-2 max-h-60 overflow-y-scroll">
-            {products.length > 0 &&
-              products.map((product, index) => (
+            {filteredProducts.length > 0 &&
+              filteredProducts.map((product, index) => (
                 <Product
                   key={`${categorySelected}_product_${index}`}
                   name={product.name}

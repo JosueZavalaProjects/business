@@ -9,8 +9,12 @@ export type Icon = {
 };
 
 export type Product = {
+  id: string;
   name: string;
   price: number;
+  category: string;
+  subcategory: string;
+  inventory?: number;
 };
 
 export type ProductCheckout = Product & {

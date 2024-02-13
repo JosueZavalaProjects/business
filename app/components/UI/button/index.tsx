@@ -42,7 +42,6 @@ export const Button = ({
     fontWeight[weight] */
   );
 
-  console.log(backgroundColors[bgColor]);
   return (
     <button
       onClick={() => onClick()}
@@ -57,5 +56,3 @@ export const Button = ({
     </button>
   );
 };
-
-/*  */

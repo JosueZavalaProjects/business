@@ -21,7 +21,7 @@ export const CategoryCard = ({
           isSelected ? "border-4 border-black" : ""
         }`}
       ></div>
-      <div className="grid justify-items-center items-center text-eerie-black">
+      <div className="grid justify-items-center items-center text-eerie-black capitalize text-xs">
         {name}
       </div>
     </div>
