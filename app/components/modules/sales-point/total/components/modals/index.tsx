@@ -3,6 +3,7 @@ import { useState } from "react";
 import Modal from "@/app/components/UI/modal";
 
 import useSalesPointState from "../../../states/sales-point-state";
+import { Change } from "./change";
 import { PaymentAmount } from "./payment-amount";
 import { PaymentMethod } from "./payment-method";
 
@@ -17,6 +18,7 @@ export const Modals = ({ show, setShow }: ModalProps) => {
     <Modal show={show} onClose={() => setShow(false)}>
       {paymentStep === 1 && <PaymentMethod />}
       {paymentStep === 2 && <PaymentAmount />}
+      {paymentStep === 3 && <Change setShow={setShow} />}
     </Modal>
   );
 };

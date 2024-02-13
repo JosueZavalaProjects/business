@@ -9,3 +9,4 @@ export const StoreIcon = require("./images/icons/store.svg");
 /* Others */
 export const MinusIcon = require("./images/icons/minus.svg");
 export const PlusIcon = require("./images/icons/plus.svg");
+export const SuccessIcon = require("./images/icons/success-icon.svg");

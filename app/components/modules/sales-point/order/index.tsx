@@ -9,6 +9,9 @@ import useSalesPointState from "../states/sales-point-state";
 import { CategoryCard } from "./components/categories/category-card";
 import { AddItems } from "./components/Items/add-items";
 import { Product } from "./components/products/page";
+import { Button } from "@/app/components/UI/button";
+import { addDoc, collection } from "firebase/firestore";
+import { db } from "@/services/firebase";
 
 export const Order = () => {
   const [items, setItems] = useState<number>(1);
@@ -29,6 +32,14 @@ export const Order = () => {
     const productToAdd = [...products][productSelected];
     const productCheckout = { ...productToAdd, amount: items };
     updateProduct(productCheckout);
+  };
+
+  const handleAddProductToDB = async () => {
+    await addDoc(collection(db, "products"), {
+      name: "playera de metalica",
+      amount: 50,
+      subcategory: "L"
+    });
   };
 
   useEffect(() => {
@@ -87,6 +98,13 @@ export const Order = () => {
             disabled={productSelected < 0 || items <= 0}
             addProduct={handleAddProduct}
           />
+          <Button
+            bgColor="malachite-green"
+            onClick={() => handleAddProductToDB()}
+          >
+            Agregar Producto a la BD
+          </Button>
+          <div className="bg-malachine-green"></div>
           <div className="w-full">
             <SearchInput value={searchValue} setValue={setSearchValue} />
           </div>

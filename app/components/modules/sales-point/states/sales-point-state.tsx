@@ -11,7 +11,7 @@ import {
   TabContent,
 } from "@/types/UI/common";
 
-type SalesPointStateProps = {
+type InitialState = {
   tabName: string;
   menuNav: NavOptions[];
   payment: number;
@@ -20,11 +20,23 @@ type SalesPointStateProps = {
   paymentStep: PaymentStep;
   paymentMethod: PaymentMethod;
   total: number;
+};
+
+type SalesPointStateProps = InitialState & {
+  /* tabName: string;
+  menuNav: NavOptions[];
+  payment: number;
+  products: ProductCheckout[];
+  tabsContents: TabContent;
+  paymentStep: PaymentStep;
+  paymentMethod: PaymentMethod;
+  total: number; */
   setTabName: (tabName: string) => void;
   setPaymentStep: (paymentStep: PaymentStep) => void;
   setPaymentMethod: (paymentMethod: PaymentMethod) => void;
   setPayment: (paymentMethod: number) => void;
   updateProduct: (product: ProductCheckout) => void;
+  clearSale: () => void;
 };
 
 const handleUpdateProduct = (
@@ -51,6 +63,17 @@ const handleCalculateTotal = (items: ProductCheckout[]) => {
     .reduce((accumulator, currentValue) => accumulator + currentValue, 0);
 };
 
+const INITIAL_STATE: InitialState = {
+  tabName: TAB_KEYS.ORDER,
+  menuNav: SALES_POINT_NAV,
+  tabsContents: CONTENTS,
+  products: [],
+  payment: 0,
+  paymentMethod: "cash",
+  paymentStep: 1,
+  total: 0,
+};
+
 const SalesPointStore = create<SalesPointStateProps>((set) => ({
   tabName: TAB_KEYS.ORDER,
   menuNav: SALES_POINT_NAV,
@@ -73,6 +96,11 @@ const SalesPointStore = create<SalesPointStateProps>((set) => ({
     });
   },
   setProducts: (products: ProductCheckout[]) => set({ products }), // Create setProducts
+  clearSale: () => {
+    set(() => {
+      return INITIAL_STATE;
+    });
+  },
 }));
 
 const useSalesPointState = () => useStore(SalesPointStore);

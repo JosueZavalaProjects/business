@@ -2,7 +2,6 @@ import Text from "@/app/components/UI/text";
 import { ProductCheckout } from "@/types/sales-point";
 
 export const TotalTable = ({ products }: { products: ProductCheckout[] }) => {
-  console.log({ products });
   return (
     <div className="max-h-96 overflow-y-scroll">
       <table className="w-full text-gray-700">
