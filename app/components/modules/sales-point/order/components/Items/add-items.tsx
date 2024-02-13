@@ -40,8 +40,6 @@ export const AddItems = ({
       >
         Agregar
       </Button>
-      {/* <div className="bg-gray-200"></div> */}
-      <div className="bg-malachine-green"></div>
     </div>
   </div>
 );

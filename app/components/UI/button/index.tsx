@@ -1,6 +1,6 @@
+"use client";
 import cn from "classnames";
 
-import { backgroundColors } from "@/constants/common";
 import { BgColor } from "@/types/UI/common";
 
 type ButtonProps = {
@@ -10,6 +10,24 @@ type ButtonProps = {
   disabled?: boolean;
   children: React.ReactNode;
 };
+
+export const backgroundColors = {
+  white: "bg-white",
+  gray: "bg-gray-400",
+  dark: "bg-gray-800",
+  primary: "bg-primary",
+  cta: "bg-cta-600",
+  positive: "bg-positive-600",
+  negative: "bg-negative-600",
+  caution: "bg-caution-600",
+  info: "bg-blue-600",
+  error: "bg-negative-500",
+  silver: "bg-old-silver",
+  "eerie-black": "bg-eerie-black",
+  "main-blue": "bg-main-blue",
+  "malachite-green": "bg-malachite-green",
+};
+
 export const Button = ({
   onClick = () => {},
   bgColor = "main-blue",
@@ -24,11 +42,15 @@ export const Button = ({
     fontWeight[weight] */
   );
 
+  console.log(backgroundColors[bgColor]);
   return (
     <button
       onClick={() => onClick()}
-      className={`border rounded-xl py-2 px-6  ${classes}
-      `}
+      className={`border rounded-xl py-2 px-6 ${
+        disabled
+          ? "bg-gray-200 border-gray-200 text-gray-400"
+          : `${classes} text-white`
+      }`}
       disabled={disabled}
     >
       <span className="flex items-center justify-center">{children}</span>
@@ -36,8 +58,4 @@ export const Button = ({
   );
 };
 
-/* ${
-  disabled
-    ? "bg-gray-200 border-gray-200 text-gray-400"
-    : `${} text-white`
-} */
+/*  */
