@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 
+import { collection, getDocs } from "firebase/firestore";
+
 import { PRODUCTS_MOCK } from "@/constants/sales-point/mock";
+import { db } from "@/services/firebase";
 import { Product as ProductType } from "@/types/sales-point";
 
 import { ContainerCard } from "../../../UI/container-card";
@@ -9,9 +12,6 @@ import useSalesPointState from "../states/sales-point-state";
 import { CategoryCard } from "./components/categories/category-card";
 import { AddItems } from "./components/Items/add-items";
 import { Product } from "./components/products";
-import { Button } from "@/app/components/UI/button";
-import { addDoc, collection, doc, getDoc, getDocs } from "firebase/firestore";
-import { db } from "@/services/firebase";
 
 export const Order = () => {
   const [items, setItems] = useState<number>(1);
@@ -26,8 +26,6 @@ export const Order = () => {
   const [productSelected, setProductSelected] = useState<number>(-1);
 
   const { updateProduct } = useSalesPointState();
-
-  /* const CATEGORIES = Object.keys(PRODUCTS_MOCK); */
 
   const handleAddProduct = () => {
     const productToAdd = [...filteredProducts][productSelected];
@@ -69,18 +67,7 @@ export const Order = () => {
     return response;
   };
 
-  /*  const handleAddProductToDB = async () => {
-    await addDoc(collection(db, "products"), {
-      name: "carrito de control remoto",
-      inventory: 50,
-      category: "juguetes",
-      price: 80,
-      subcategory: "electronico",
-    });
-  };
- */
   useEffect(() => {
-    /* getDataProducts(); */
     handleGetProducts();
   }, []);
 
@@ -146,13 +133,6 @@ export const Order = () => {
             disabled={productSelected < 0 || items <= 0}
             addProduct={handleAddProduct}
           />
-          {/*       <Button
-            bgColor="malachite-green"
-            onClick={() => handleAddProductToDB()}
-          >
-            Agregar Producto a la BD
-          </Button>
- */}
           <div className="w-full">
             <SearchInput value={searchValue} setValue={setSearchValue} />
           </div>
