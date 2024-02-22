@@ -1,6 +1,7 @@
+import { FOOTER_ICONS } from "@/constants/common";
+
 import { ContainerCard } from "../../UI/container-card";
 import { FooterButton } from "./footer-button";
-import { FOOTER_ICONS } from "@/constants/common";
 
 export const Footer = () => {
   return (
