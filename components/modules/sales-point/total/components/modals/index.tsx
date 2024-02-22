@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import Modal from "@/app/components/UI/modal";
+import Modal from "@/components/UI/modal";
 
 import useSalesPointState from "../../../states/sales-point-state";
 import { Change } from "./change";

@@ -1,7 +1,7 @@
 import Image from "next/image";
 
-import { Button } from "@/app/components/UI/button";
-import Text from "@/app/components/UI/text";
+import { Button } from "@/components/UI/button";
+import Text from "@/components/UI/text";
 import { SuccessIcon } from "@/public/assets";
 
 import useSalesPointState from "../../../states/sales-point-state";

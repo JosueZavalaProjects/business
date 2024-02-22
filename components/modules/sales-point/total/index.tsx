@@ -4,8 +4,8 @@ import { useState } from "react";
 import dayjs from "dayjs";
 require("dayjs/locale/es");
 
-import { ContainerCard } from "@/app/components/UI/container-card";
-import Text from "@/app/components/UI/text";
+import { ContainerCard } from "@/components/UI/container-card";
+import Text from "@/components/UI/text";
 
 import useSalesPointState from "../states/sales-point-state";
 import { Modals } from "./components/modals";

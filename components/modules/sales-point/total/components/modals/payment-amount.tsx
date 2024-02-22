@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-import { Button } from "@/app/components/UI/button";
-import Text from "@/app/components/UI/text";
+import { Button } from "@/components/UI/button";
+import Text from "@/components/UI/text";
 
 import useSalesPointState from "../../../states/sales-point-state";
 

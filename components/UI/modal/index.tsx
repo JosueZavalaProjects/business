@@ -3,7 +3,7 @@ import { HiX } from "react-icons/hi";
 
 import cn from "classnames";
 
-import Portal from "@/app/hoc/portal";
+import Portal from "@/hoc/portal";
 
 type Size = "xs" | "md" | "lg" | "xl" | "none";
 

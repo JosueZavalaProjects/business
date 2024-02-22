@@ -1,5 +1,5 @@
 "use client";
-import { Button } from "@/app/components/UI/button";
+import { Button } from "@/components/UI/button";
 import { MinusIcon, PlusIcon } from "@/public/assets";
 
 import { BlackButton } from "./black-button";

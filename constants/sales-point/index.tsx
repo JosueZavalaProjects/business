@@ -1,6 +1,6 @@
 "use client";
-import { Order } from "@/app/components/modules/sales-point/order";
-import { Total } from "@/app/components/modules/sales-point/total";
+import { Order } from "@/components/modules/sales-point/order";
+import { Total } from "@/components/modules/sales-point/total";
 import { NavOptions, TabContent } from "@/types/UI/common";
 export const TAB_KEYS = {
   ORDER: "order",

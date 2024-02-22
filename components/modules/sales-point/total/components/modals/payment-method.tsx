@@ -1,4 +1,4 @@
-import { Button } from "@/app/components/UI/button";
+import { Button } from "@/components/UI/button";
 import { PaymentMethod as MethodType } from "@/types/UI/common";
 
 import useSalesPointState from "../../../states/sales-point-state";
