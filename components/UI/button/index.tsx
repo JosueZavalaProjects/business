@@ -45,7 +45,7 @@ export const Button = ({
   return (
     <button
       onClick={() => onClick()}
-      className={`border rounded-xl py-2 px-6 ${
+      className={`border rounded-xl py-2 px-6 cursor-pointer ${
         disabled
           ? "bg-gray-200 border-gray-200 text-gray-400"
           : `${classes} text-white`

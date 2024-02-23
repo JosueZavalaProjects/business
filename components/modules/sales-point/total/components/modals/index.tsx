@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 import Modal from "@/components/UI/modal";
 
 import useSalesPointState from "../../../states/sales-point-state";

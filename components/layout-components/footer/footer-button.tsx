@@ -6,12 +6,16 @@ import { Icon } from "@/types/sales-point";
 
 type FooterButtonProps = {
   icon: Icon;
+  handleOnClick?: () => void;
 };
 
-export const FooterButton = ({ icon }: FooterButtonProps) => {
+export const FooterButton = ({ icon, handleOnClick }: FooterButtonProps) => {
   return (
     <Link href={icon.link || ""}>
-      <div className="grid justify-items-center cursor-pointer items-center w-[40px] h-[40px]">
+      <div
+        className="grid justify-items-center cursor-pointer items-center w-[40px] h-[40px]"
+        onClick={() => (handleOnClick ? handleOnClick() : {})}
+      >
         <Image
           src={icon.src}
           width={icon.width}
