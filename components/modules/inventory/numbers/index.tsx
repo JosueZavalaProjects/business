@@ -1,10 +1,20 @@
 import Text from "@/components/UI/text";
+type NumberButtonProps = {
+  character: number | string;
+  handleSetAmount: (character: number | string) => void;
+};
 
-export const NumberButton = ({ number }: { number: number | string }) => {
+export const NumberButton = ({
+  character,
+  handleSetAmount,
+}: NumberButtonProps) => {
   return (
-    <div className="grid justify-items-center items-cener w-20 h-20 cursor-pointer ">
+    <div
+      className="grid justify-items-center items-cener w-20 h-20 cursor-pointer"
+      onClick={() => handleSetAmount(character)}
+    >
       <Text color="white" size="4xl" className="flex text-center items-center">
-        {number}
+        {character}
       </Text>
     </div>
   );
