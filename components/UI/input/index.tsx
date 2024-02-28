@@ -1,13 +1,21 @@
+import { ProductKeys } from "@/types/inventory";
 import Text from "../text";
 
 type InputProps = {
   label: string;
   placeholder?: string;
-  value: string;
-  setValue: (newValue: string) => void;
+  value: string | number | undefined;
+  keyValue?: ProductKeys;
+  setValue: (newValue: string, keyValue?: ProductKeys) => void;
 };
 
-export const Input = ({ label, placeholder, value, setValue }: InputProps) => {
+export const Input = ({
+  label,
+  placeholder,
+  value,
+  keyValue,
+  setValue,
+}: InputProps) => {
   return (
     <div>
       <div className="grid gap-2">
@@ -21,7 +29,7 @@ export const Input = ({ label, placeholder, value, setValue }: InputProps) => {
               className="w-full bg-transparent py-2 pl-3 pr-1 border-none text-center focus:border-none focus:outline-0 focus:ring-0"
               placeholder={placeholder || ""}
               value={value}
-              onChange={(e) => setValue(e.target.value)}
+              onChange={(e) => setValue(e.target.value, keyValue)}
             />
           </div>
         </div>

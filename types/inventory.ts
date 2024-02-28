@@ -8,4 +8,19 @@ export const UnitsObject: { [key: string]: Unit } = {
   lt: "lt",
 };
 
+export type Product = {
+  category: string;
+  type: string;
+  name: string;
+  price?: number;
+  amount: number;
+  unit: Unit;
+};
 
+export type ProductKeys =
+  | "category"
+  | "type"
+  | "name"
+  | "price"
+  | "amount"
+  | "unit";

@@ -9,24 +9,26 @@ import SearchInput from "@/components/UI/search-input";
 import Text from "@/components/UI/text";
 import { BackArrow } from "@/public/assets";
 import { Modals } from "../../modals";
+import { Product, ProductKeys } from "@/types/inventory";
+import { PRODUCT_KEYS } from "@/constants/inventory";
 
 type ProductInformationProps = {
   setStep: (nextStep: number) => void;
+  handleSetProduct: (value: string, key: ProductKeys) => void;
+  product: Product;
 };
 
-/* type Product = {
-  category: string;
-  type: string;
-  name: string;
-  price: number;
-}; */
-export const ProductInformation = ({ setStep }: ProductInformationProps) => {
+export const ProductInformation = ({
+  setStep,
+  handleSetProduct,
+  product,
+}: ProductInformationProps) => {
   const [searchInput, setSearchInput] = useState<string>("");
-  const [category, setCategory] = useState<string>("");
+  /* const [category, setCategory] = useState<string>("");
   const [productType, setProductType] = useState<string>("");
   const [productName, setProductName] = useState<string>("");
-  const [productPrice, setProductPrice] = useState<string>("");
-  /* const [product, setProduct] = useState<Product>(); */
+  const [productPrice, setProductPrice] = useState<string>(""); */
+
   const [isValidForm, setIsValidForm] = useState<boolean>(false);
   const [showModal, setShowModal] = useState<boolean>(false);
 
@@ -37,13 +39,21 @@ export const ProductInformation = ({ setStep }: ProductInformationProps) => {
 
   const handleSetInventoryStep = (newStep: number) => setStep(newStep);
 
+  const handleSetValueProduct = (value: string, key?: ProductKeys) => {
+    /* console.log({ value });
+    console.log({ key }); */
+    const keyValue = key || "name";
+    handleSetProduct(value, keyValue);
+  };
+
   useEffect(() => {
-    if (category && productType && productName && productPrice) {
+    const { category, type, name, price } = product;
+    if (category && type && name && price) {
       setIsValidForm(true);
       return;
     }
     setIsValidForm(false);
-  }, [category, productType, productName, productPrice]);
+  }, [product]);
 
   return (
     <section className="h-[41rem]">
@@ -84,27 +94,31 @@ export const ProductInformation = ({ setStep }: ProductInformationProps) => {
             <Input
               label="category"
               placeholder="Ropa"
-              value={category}
-              setValue={setCategory}
+              value={product[PRODUCT_KEYS.CATEGORY]}
+              keyValue={PRODUCT_KEYS.CATEGORY}
+              setValue={handleSetValueProduct}
             />
             <Input
               label="tipo de producto"
               placeholder="Playera M"
-              value={productType}
-              setValue={setProductType}
+              value={product[PRODUCT_KEYS.TYPE]}
+              keyValue={PRODUCT_KEYS.TYPE}
+              setValue={handleSetValueProduct}
             />
             <Input
               label="nombre de producto"
               placeholder="Playera de Barbie"
-              value={productName}
-              setValue={setProductName}
+              value={product[PRODUCT_KEYS.NAME]}
+              keyValue={PRODUCT_KEYS.NAME}
+              setValue={handleSetValueProduct}
             />
-            <Input
+            {/* <Input
               label="precio de venta"
               placeholder="598 MXN"
-              value={productPrice}
-              setValue={setProductPrice}
-            />
+              value={product[PRODUCT_KEYS.PRICE]}
+              keyValue={PRODUCT_KEYS.PRICE}
+              setValue={handleSetValueProduct}
+            /> */}
             <div className="flex justify-center pt-4">
               <Button
                 className="!py-4 !px-8"
