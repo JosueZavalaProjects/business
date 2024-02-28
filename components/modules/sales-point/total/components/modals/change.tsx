@@ -1,12 +1,12 @@
+import { addDoc, collection } from "firebase/firestore";
 import Image from "next/image";
 
 import { Button } from "@/components/UI/button";
 import Text from "@/components/UI/text";
 import { SuccessIcon } from "@/public/assets";
+import { db } from "@/services/firebase";
 
 import useSalesPointState from "../../../states/sales-point-state";
-import { addDoc, collection } from "firebase/firestore";
-import { db } from "@/services/firebase";
 
 export const Change = ({ setShow }: { setShow: (show: boolean) => void }) => {
   const { payment, products, total, clearSale } = useSalesPointState();

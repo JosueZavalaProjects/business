@@ -8,6 +8,7 @@ import { Input } from "@/components/UI/input";
 import SearchInput from "@/components/UI/search-input";
 import Text from "@/components/UI/text";
 import { BackArrow } from "@/public/assets";
+import { Modals } from "../../modals";
 
 type ProductInformationProps = {
   setStep: (nextStep: number) => void;
@@ -27,11 +28,14 @@ export const ProductInformation = ({ setStep }: ProductInformationProps) => {
   const [productPrice, setProductPrice] = useState<string>("");
   /* const [product, setProduct] = useState<Product>(); */
   const [isValidForm, setIsValidForm] = useState<boolean>(false);
+  const [showModal, setShowModal] = useState<boolean>(false);
 
   /* const handleSetProduct = (field: string) => {
     const newProduct = { ...product };
     newProduct[field] = 'some'
   }; */
+
+  const handleSetInventoryStep = (newStep: number) => setStep(newStep);
 
   useEffect(() => {
     if (category && productType && productName && productPrice) {
@@ -43,6 +47,11 @@ export const ProductInformation = ({ setStep }: ProductInformationProps) => {
 
   return (
     <section className="h-[41rem]">
+      <Modals
+        show={showModal}
+        setShow={setShowModal}
+        setInventoryStep={handleSetInventoryStep}
+      />
       <div className="grid w-full gap-4 px-4 bg-main-blue rounded-b-lg">
         <div className="flex w-full justify-between bg-main-blue">
           <div className="w-[245px]">
@@ -50,7 +59,9 @@ export const ProductInformation = ({ setStep }: ProductInformationProps) => {
               Agrega la informacion del producto o Servicio
             </Text>
           </div>
-          <div className="grid justify-items-center items-center">O</div>
+          <div className="grid justify-items-center items-center">
+            {/* Here comes Notification bell icon */}
+          </div>
         </div>
         <div className="flex gap-4 pb-28 static">
           <Image
@@ -95,7 +106,11 @@ export const ProductInformation = ({ setStep }: ProductInformationProps) => {
               setValue={setProductPrice}
             />
             <div className="flex justify-center pt-4">
-              <Button className="!py-4 !px-8" disabled={!isValidForm}>
+              <Button
+                className="!py-4 !px-8"
+                onClick={() => setShowModal(true)}
+                disabled={!isValidForm}
+              >
                 Agregar
               </Button>
             </div>
