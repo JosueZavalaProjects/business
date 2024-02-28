@@ -8,7 +8,7 @@ import Text from "@/components/UI/text";
 import { BackArrow, CameraIcon } from "@/public/assets";
 import { Unit, UnitsObject } from "@/types/inventory";
 
-import { NumberButton } from "../numbers";
+import { NumberButton } from "./numbers";
 
 type SetUnitsProps = {
   amount: string;

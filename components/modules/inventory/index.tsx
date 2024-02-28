@@ -4,7 +4,8 @@ import { useState } from "react";
 import { useAmount } from "@/hook/useAmount";
 import { Unit } from "@/types/inventory";
 
-import { SetUnits } from "./set-units";
+import { ProductInformation } from "./components/steps/product-information";
+import { SetUnits } from "./components/steps/set-units";
 
 export const Inventory = (): React.ReactElement => {
   const [step, setStep] = useState<number>(0);
@@ -23,7 +24,7 @@ export const Inventory = (): React.ReactElement => {
           setUnit={setUnit}
         />
       )}
-      {step === 1 && <div>paso 2</div>}
+      {step === 1 && <ProductInformation setStep={setStep} />}
     </>
   );
 };
