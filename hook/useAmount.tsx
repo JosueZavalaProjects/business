@@ -1,6 +1,8 @@
 import { useState } from "react";
 
-export const useAmount = (unit: "pzs" | "kg" | "lt") => {
+import { Unit } from "@/types/inventory";
+
+export const useAmount = (unit: Unit) => {
   const [amount, setAmount] = useState<string>("");
 
   const handleSetAmount = (character: number | string) => {
@@ -28,5 +30,12 @@ export const useAmount = (unit: "pzs" | "kg" | "lt") => {
     setAmount(newAmount !== "0" ? newAmount : "");
   };
 
-  return { amount, handleSetAmount };
+  const removeDecimalPart = (unit: Unit) => {
+    if (unit === "pzs") {
+      const decimalPart = amount.split(".");
+      setAmount(decimalPart[0]);
+    }
+  };
+
+  return { amount, handleSetAmount, removeDecimalPart };
 };

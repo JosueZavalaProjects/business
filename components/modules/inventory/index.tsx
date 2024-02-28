@@ -7,12 +7,18 @@ import { Button } from "@/components/UI/button";
 import Text from "@/components/UI/text";
 import { useAmount } from "@/hook/useAmount";
 import { BackArrow, CameraIcon } from "@/public/assets";
+import { Unit, UnitsObject } from "@/types/inventory";
 
 import { NumberButton } from "./numbers";
 
-export const Inventory = () => {
-  const [unit, setUnit] = useState<"pzs" | "kg" | "lt">("kg");
-  const { amount, handleSetAmount } = useAmount(unit);
+export const Inventory = (): React.ReactElement => {
+  const [unit, setUnit] = useState<Unit>("pzs");
+  const { amount, handleSetAmount, removeDecimalPart } = useAmount(unit);
+
+  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setUnit(UnitsObject[e.target.value]);
+    removeDecimalPart(UnitsObject[e.target.value]);
+  };
 
   return (
     <div className="grid gap-4 bg-main-blue p-4">
@@ -53,14 +59,31 @@ export const Inventory = () => {
         />
       </div>
       <div className="grid gap-4 justify-items-center items-cener py-4">
-        <div className="flex flex-col">
-          <div className="flex gap-2 items-end">
-            <Text color="white" size="5xl">
+        <div className="flex flex-col w-full items-center">
+          <div className="flex gap-2 w-2/3 justify-center items-end py-2">
+            <Text
+              color="white"
+              size="5xl"
+              className="max-w-40 overflow-x-scroll overflow-y-hidden justify-start px-4"
+            >
               {amount ? amount : 0}
             </Text>
-            <Text color="white" size="sm">
-              Pzs
+            <Text color="white" size="sm" className="capitalize w-1/12">
+              {unit}
             </Text>
+          </div>
+          <div className="flex w-full justify-center">
+            <select
+              name="selectedFruit"
+              onChange={(e) => {
+                handleChange(e);
+              }}
+              className="text-white p-2 w-4/12 rounded-3xl border border-white bg-transparent focus:outline-none"
+            >
+              <option value={UnitsObject.pzs}>Pzas</option>
+              <option value={UnitsObject.kg}>Kg</option>
+              <option value={UnitsObject.lt}>Lt</option>
+            </select>
           </div>
         </div>
         <div className="grid grid-cols-3 w-full gap-4 px-4">
@@ -76,7 +99,7 @@ export const Inventory = () => {
           <NumberButton handleSetAmount={handleSetAmount} character={"<"} />
         </div>
         <div className="grid gap-4 justify-items-center items-cener py-4">
-          <Button>Agregar</Button>
+          <Button disabled={Boolean(!amount)}>Agregar</Button>
         </div>
       </div>
     </div>
