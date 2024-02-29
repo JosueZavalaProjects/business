@@ -7,41 +7,27 @@ import { ContainerCard } from "@/components/UI/container-card";
 import { Input } from "@/components/UI/input";
 import SearchInput from "@/components/UI/search-input";
 import Text from "@/components/UI/text";
-import { BackArrow } from "@/public/assets";
-import { Modals } from "../../modals";
-import { Product, ProductKeys } from "@/types/inventory";
 import { PRODUCT_KEYS } from "@/constants/inventory";
+import { BackArrow } from "@/public/assets";
+import { Product, ProductKeys } from "@/types/inventory";
 
 type ProductInformationProps = {
   setStep: (nextStep: number) => void;
   handleSetProduct: (value: string, key: ProductKeys) => void;
+  setShowModal: (show: boolean) => void;
   product: Product;
 };
 
 export const ProductInformation = ({
   setStep,
   handleSetProduct,
+  setShowModal,
   product,
 }: ProductInformationProps) => {
   const [searchInput, setSearchInput] = useState<string>("");
-  /* const [category, setCategory] = useState<string>("");
-  const [productType, setProductType] = useState<string>("");
-  const [productName, setProductName] = useState<string>("");
-  const [productPrice, setProductPrice] = useState<string>(""); */
-
   const [isValidForm, setIsValidForm] = useState<boolean>(false);
-  const [showModal, setShowModal] = useState<boolean>(false);
-
-  /* const handleSetProduct = (field: string) => {
-    const newProduct = { ...product };
-    newProduct[field] = 'some'
-  }; */
-
-  const handleSetInventoryStep = (newStep: number) => setStep(newStep);
 
   const handleSetValueProduct = (value: string, key?: ProductKeys) => {
-    /* console.log({ value });
-    console.log({ key }); */
     const keyValue = key || "name";
     handleSetProduct(value, keyValue);
   };
@@ -57,11 +43,6 @@ export const ProductInformation = ({
 
   return (
     <section className="h-[41rem]">
-      <Modals
-        show={showModal}
-        setShow={setShowModal}
-        setInventoryStep={handleSetInventoryStep}
-      />
       <div className="grid w-full gap-4 px-4 bg-main-blue rounded-b-lg">
         <div className="flex w-full justify-between bg-main-blue">
           <div className="w-[245px]">

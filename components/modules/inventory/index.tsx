@@ -1,17 +1,19 @@
 "use client";
 import { useState } from "react";
 
+import { MOCK_PRODUCT, PRODUCT_KEYS } from "@/constants/inventory";
 import { useAmount } from "@/hook/useAmount";
 import { Product, ProductKeys, Unit } from "@/types/inventory";
 
+import { Modals } from "./components/modals";
 import { ProductInformation } from "./components/steps/product-information";
 import { SetUnits } from "./components/steps/set-units";
-import { MOCK_PRODUCT, PRODUCT_KEYS } from "@/constants/inventory";
 
 export const Inventory = (): React.ReactElement => {
   const [step, setStep] = useState<number>(0);
   const [unit, setUnit] = useState<Unit>("pzs");
   const [product, setProduct] = useState<Product>(MOCK_PRODUCT);
+  const [showModal, setShowModal] = useState<boolean>(false);
 
   const { amount, handleSetAmount, removeDecimalPart } = useAmount(unit);
 
@@ -19,22 +21,19 @@ export const Inventory = (): React.ReactElement => {
     if (key === PRODUCT_KEYS.PRICE) value = +value;
 
     const newProduct = { ...product, [key]: value };
-    /* newProduct[PRODUCT_KEYS[key]] = product[key] + value; */
 
-    /* const newValue = `${newProduct[key]}${value}`;
-    newProduct[key] = newValue; */
-    /* newProduct[key] += value; */
-    /* console.log(product[key]); */
-    console.log(newProduct);
-    console.log(`${product[key]}`);
-    console.log(key);
-    /* console.log({ newProduct }); */
     setProduct(newProduct);
-    /* newProduct[key] = "test"; */
   };
+
+  const handleSetInventoryStep = (newStep: number) => setStep(newStep);
 
   return (
     <>
+      <Modals
+        show={showModal}
+        setShow={setShowModal}
+        setInventoryStep={handleSetInventoryStep}
+      />
       {step === 0 && (
         <SetUnits
           amount={amount}
@@ -48,8 +47,9 @@ export const Inventory = (): React.ReactElement => {
       {step === 1 && (
         <ProductInformation
           setStep={setStep}
-          product={product}
+          setShowModal={setShowModal}
           handleSetProduct={handleSetProduct}
+          product={product}
         />
       )}
     </>
