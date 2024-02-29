@@ -1,4 +1,5 @@
 import { ProductKeys } from "@/types/inventory";
+
 import Text from "../text";
 
 type InputProps = {
