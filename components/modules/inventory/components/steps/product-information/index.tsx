@@ -61,7 +61,7 @@ export const ProductInformation = ({
             height={26}
             alt="back arrow"
             className="cursor-pointer"
-            onClick={() => setStep(0)}
+            onClick={() => setStep(1)}
           />
         </div>
       </div>

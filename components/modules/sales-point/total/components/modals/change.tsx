@@ -21,7 +21,7 @@ export const Change = ({ setShow }: { setShow: (show: boolean) => void }) => {
 
   const handleNextStep = async () => {
     await handleAddSaleToDB();
-    console.log("done");
+
     clearSale();
     setShow(false);
   };

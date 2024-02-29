@@ -111,7 +111,7 @@ export const SetUnits = ({
           <NumberButton handleSetAmount={handleSetAmount} character={"<"} />
         </div>
         <div className="grid gap-4 justify-items-center items-cener py-4">
-          <Button disabled={Boolean(!amount)} onClick={() => setStep(1)}>
+          <Button disabled={Boolean(!amount)} onClick={() => setStep(2)}>
             Agregar
           </Button>
         </div>

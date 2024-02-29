@@ -12,13 +12,21 @@ import { PaymentMethod } from "./payment-method"; */
 
 type ModalProps = {
   show: boolean;
+  modalStep: number;
   setShow: (show: boolean) => void;
   setInventoryStep: (newStep: number) => void;
+  handleAddProduct: () => void;
+  setModalStep: (newStep: number) => void;
 };
 
-export const Modals = ({ show, setShow, setInventoryStep }: ModalProps) => {
-  const [modalStep, setModalStep] = useState<number>(1);
-
+export const Modals = ({
+  show,
+  modalStep,
+  setShow,
+  setInventoryStep,
+  handleAddProduct,
+  setModalStep,
+}: ModalProps) => {
   const handleSetInventoryStep = (inventoryStep: number) => {
     setShow(false);
     setInventoryStep(inventoryStep);
@@ -32,8 +40,8 @@ export const Modals = ({ show, setShow, setInventoryStep }: ModalProps) => {
       test
       {modalStep === 1 && (
         <AskConfirmation
-          setModalStep={setModalStep}
           setInventoryStep={handleSetInventoryStep}
+          handleAddProduct={handleAddProduct}
         />
       )}
       {modalStep === 2 && (

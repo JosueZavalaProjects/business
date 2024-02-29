@@ -22,7 +22,7 @@ export const Confirmation = ({
         ¡Listo! Agregaste un nuevo artículo
       </Text>
       <div className="flex justify-center">
-        <Button onClick={() => setInventoryStep(1)}>
+        <Button onClick={() => setInventoryStep(2)}>
           Deseas agregar otro producto
         </Button>
       </div>
