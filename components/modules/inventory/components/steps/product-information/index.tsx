@@ -112,13 +112,14 @@ export const ProductInformation = ({
               keyValue={PRODUCT_KEYS.NAME}
               setValue={handleSetValueProduct}
             />
-            {/* <Input
+            <Input
               label="precio de venta"
               placeholder="598 MXN"
               value={product[PRODUCT_KEYS.PRICE]}
               keyValue={PRODUCT_KEYS.PRICE}
               setValue={handleSetValueProduct}
-            /> */}
+              type="number"
+            />
             <div className="flex justify-center pt-4">
               <Button
                 className="!py-4 !px-8"

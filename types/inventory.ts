@@ -12,7 +12,7 @@ export type Product = {
   category: string;
   type: string;
   name: string;
-  price?: number;
+  price: number;
   amount: number;
   unit: Unit;
 };

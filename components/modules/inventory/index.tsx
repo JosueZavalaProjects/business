@@ -15,7 +15,9 @@ export const Inventory = (): React.ReactElement => {
 
   const { amount, handleSetAmount, removeDecimalPart } = useAmount(unit);
 
-  const handleSetProduct = (value: string, key: ProductKeys) => {
+  const handleSetProduct = (value: string | number, key: ProductKeys) => {
+    if (key === PRODUCT_KEYS.PRICE) value = +value;
+
     const newProduct = { ...product, [key]: value };
     /* newProduct[PRODUCT_KEYS[key]] = product[key] + value; */
 
